@@ -193,6 +193,7 @@ export type Database = {
           preferred_start_time: string
           preferred_view: string
           session_duration: number
+          study_reminders: boolean
           theme: string
           updated_at: string
           user_id: string
@@ -209,6 +210,7 @@ export type Database = {
           preferred_start_time?: string
           preferred_view?: string
           session_duration?: number
+          study_reminders?: boolean
           theme?: string
           updated_at?: string
           user_id: string
@@ -225,6 +227,7 @@ export type Database = {
           preferred_start_time?: string
           preferred_view?: string
           session_duration?: number
+          study_reminders?: boolean
           theme?: string
           updated_at?: string
           user_id?: string

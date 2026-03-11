@@ -24,6 +24,7 @@ export default function Profile() {
     break_duration: 10,
     preferred_start_time: "09:00",
     theme: "light",
+    study_reminders: false,
   });
 
   useEffect(() => {
@@ -38,6 +39,7 @@ export default function Profile() {
         break_duration: profile.break_duration ?? 10,
         preferred_start_time: profile.preferred_start_time?.slice(0, 5) ?? "09:00",
         theme: profile.theme ?? "light",
+        study_reminders: profile.study_reminders ?? false,
       });
       // Apply theme from profile and persist to localStorage
       const isDark = profile.theme === "dark";
@@ -117,7 +119,7 @@ export default function Profile() {
           </div>
         </motion.div>
 
-        <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="rounded-2xl bg-card p-6 card-shadow space-y-5">
+        <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="rounded-2xl bg-card p-6 card-shadow space-y-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               {form.theme === "dark" ? <Moon className="h-5 w-5 text-primary" /> : <Sun className="h-5 w-5 text-primary" />}
@@ -127,6 +129,17 @@ export default function Profile() {
               </div>
             </div>
             <Switch checked={form.theme === "dark"} onCheckedChange={toggleTheme} />
+          </div>
+
+          <div className="border-t pt-5 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <Clock className="h-5 w-5 text-primary" />
+              <div>
+                <p className="font-medium text-foreground">Study Reminders</p>
+                <p className="text-sm text-muted-foreground">Get notified at your preferred start time</p>
+              </div>
+            </div>
+            <Switch checked={form.study_reminders} onCheckedChange={(checked) => setForm(p => ({ ...p, study_reminders: checked }))} />
           </div>
         </motion.div>
 

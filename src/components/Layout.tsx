@@ -12,6 +12,8 @@ const navItems = [
   { path: "/profile", label: "Profile", icon: User },
 ];
 
+import StudyChatbot from "./StudyChatbot";
+
 export default function Layout({ children }: { children: React.ReactNode }) {
   const { pathname } = window.location;
   const { signOut } = useAuth();
@@ -23,7 +25,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative">
       <header className="sticky top-0 z-50 glass border-b">
         <div className="container flex h-16 items-center justify-between">
           <Link to="/dashboard" className="flex items-center gap-2.5">
@@ -68,11 +70,12 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <Link
                 key={item.path}
                 to={item.path}
-                    className={`flex flex-col items-center px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
+                className={`flex flex-col items-center px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
                   isActive ? "text-primary" : "text-muted-foreground"
                 }`}
               >
-                    {item.label}
+                <item.icon className="h-5 w-5" />
+                <span className="mt-1">{item.label}</span>
               </Link>
             );
           })}
@@ -91,6 +94,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           {children}
         </motion.main>
       </AnimatePresence>
+
+      <StudyChatbot />
     </div>
   );
 }

@@ -27,28 +27,34 @@ if (cachedTheme === "dark") {
   document.documentElement.classList.remove("dark");
 }
 
+import { AlarmProvider } from "@/context/AlarmContext";
+import AlarmOverlay from "@/components/AlarmOverlay";
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <AuthProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
-            <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-            <Route path="/planner" element={<ProtectedRoute><StudyPlanner /></ProtectedRoute>} />
-            <Route path="/habits" element={<ProtectedRoute><HabitTracker /></ProtectedRoute>} />
-            <Route path="/goals" element={<ProtectedRoute><Goals /></ProtectedRoute>} />
-            <Route path="/alarms" element={<ProtectedRoute><Alarms /></ProtectedRoute>} />
-            <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
+      <AlarmProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <AlarmOverlay />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/forgot-password" element={<ForgotPassword />} />
+              <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+              <Route path="/planner" element={<ProtectedRoute><StudyPlanner /></ProtectedRoute>} />
+              <Route path="/habits" element={<ProtectedRoute><HabitTracker /></ProtectedRoute>} />
+              <Route path="/goals" element={<ProtectedRoute><Goals /></ProtectedRoute>} />
+              <Route path="/alarms" element={<ProtectedRoute><Alarms /></ProtectedRoute>} />
+              <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </TooltipProvider>
+      </AlarmProvider>
     </AuthProvider>
   </QueryClientProvider>
 );
